@@ -1,21 +1,22 @@
 import network
 import time
-import urequests
+import ujson
 import dht
 from machine import Pin
+from simple import MQTTClient
 
 # --- Configuração ---
 WIFI_SSID = "Wokwi-GUEST"
 WIFI_PASSWORD = ""
 
 # Cole o seu Token de Acesso do ThingsBoard aqui
-ACCESS_TOKEN = "SEU_TOKEN_DE_ACESSO_AQUI" 
+ACCESS_TOKEN = "SEU_TOKEN_DE_ACESSO_DO_THINGSBOARD"
 THINGSBOARD_SERVER = "thingsboard.cloud"
+MQTT_PORT = 1883  # porta padrão MQTT sem TLS
 
-URL = f"http://{THINGSBOARD_SERVER}/api/v1/{ACCESS_TOKEN}/telemetry"
+TOPIC = b"v1/devices/me/telemetry"  # tópico padrão de telemetria do ThingsBoard
 
 # --- Inicialização do Sensor Físico ---
-# O pino D14 foi o configurado no arquivo diagram.json
 sensor = dht.DHT22(Pin(14))
 
 # --- Conectar ao WiFi ---
@@ -30,34 +31,45 @@ def connect_wifi():
             time.sleep(0.5)
     print("\nConectado! Configuração de rede:", wlan.ifconfig())
 
+# --- Conectar ao broker MQTT do ThingsBoard ---
+def connect_mqtt():
+    client = MQTTClient(
+        client_id="wokwi_esp32",
+        server=THINGSBOARD_SERVER,
+        port=MQTT_PORT,
+        user=ACCESS_TOKEN,   # o token substitui usuário/senha tradicionais
+        password=""
+    )
+    client.connect()
+    print("Conectado ao broker MQTT do ThingsBoard!")
+    return client
+
 # --- Programa Principal ---
 connect_wifi()
+mqtt_client = connect_mqtt()
 
 while True:
     try:
-        # Lendo os dados do sensor DHT22
         sensor.measure()
         temperature = sensor.temperature()
         humidity = sensor.humidity()
-        
-        # Cria o payload estruturado para o ThingsBoard
-        payload = {
+
+        payload = ujson.dumps({
             "temperature": temperature,
             "humidity": humidity
-        }
-        
-        print(f"Enviando telemetria real: {payload}")
-        
-        # Envia a requisição HTTP POST
-        response = urequests.post(URL, json=payload)
-        print(f"Status do Servidor: {response.status_code}")
-        response.close()
-        
-    except OSError as e:
+        })
+
+        print(f"Publicando telemetria via MQTT: {payload}")
+        mqtt_client.publish(TOPIC, payload)
+
+    except OSError:
         print("Falha ao ler o sensor DHT22! Verifique as conexões.")
     except Exception as e:
-        print(f"Erro ao enviar dados: {e}")
-        connect_wifi()
+        print(f"Erro MQTT: {e}")
+        try:
+            mqtt_client = connect_mqtt()
+        except Exception:
+            connect_wifi()
+            mqtt_client = connect_mqtt()
 
-    # O sensor DHT22 precisa de pelo menos 2 segundos entre as leituras
     time.sleep(5)
