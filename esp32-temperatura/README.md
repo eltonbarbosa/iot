@@ -9,6 +9,7 @@
 \*Importante: O simulador deve estar aberto em outra aba
 
 **mpremote connect port:rfc2217://localhost:4000 fs cp main.py :main.py**
+**mpremote connect port:rfc2217://localhost:4000 fs cp simple.py :simple.py + run main.py**
 
 ## Executar
 
