@@ -10,7 +10,7 @@ WIFI_SSID = "Wokwi-GUEST"
 WIFI_PASSWORD = ""
 
 # Cole o seu Token de Acesso do ThingsBoard aqui
-ACCESS_TOKEN = "58bpfvkbbhuugs60k9ny"
+ACCESS_TOKEN = "SEU_TOKEN_DE_ACESSO_DO_THINGSBOARD"
 THINGSBOARD_SERVER = "thingsboard.cloud"
 MQTT_PORT = 1883  # porta padrão MQTT sem TLS
 
