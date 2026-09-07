@@ -10,11 +10,22 @@ Rode este comando toda vez que desejar rodar a simulação ou quando atualizar a
 
 ### Para usuários Windows
 
-`py -m mpremote connect port:rfc2217://localhost:4000 fs cp simple.py :simple.py + run main.py`
+```bat
+py -m mpremote connect port:rfc2217://localhost:4000 fs cp simple.py :simple.py + fs cp secrets.py :secrets.py + run main.py
+```
 
 ### Para usuários MacOs e Linux
 
-`mpremote connect port:rfc2217://localhost:4000 fs cp simple.py :simple.py + run main.py`
+```bash
+mpremote connect port:rfc2217://localhost:4000 \
+	fs cp simple.py :simple.py + \
+	fs cp secrets.py :secrets.py + \
+	run main.py
+```
+
+Antes de executar, preencha `secrets.py` com o token do dispositivo no ThingsBoard.
+O arquivo e ignorado pelo Git para evitar publicar a credencial. Copie-o para o
+ESP32 junto com os outros arquivos:
 
 ### Importante:
 
