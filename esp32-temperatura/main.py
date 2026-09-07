@@ -4,16 +4,14 @@ import ujson
 import dht
 from machine import Pin
 from simple import MQTTClient
+from secrets import ACCESS_TOKEN, MQTT_CLIENT_ID
 
 # --- Configuração ---
 WIFI_SSID = "Wokwi-GUEST"
 WIFI_PASSWORD = ""
 
-# Cole o seu Token de Acesso do ThingsBoard aqui
-ACCESS_TOKEN = "SEU_TOKEN_DE_ACESSO_DO_THINGSBOARD"
 THINGSBOARD_SERVER = "thingsboard.cloud"
 MQTT_PORT = 1883  # porta padrão MQTT sem TLS
-MQTT_CLIENT_ID = "SEU_CLIENT_ID"  # ID do cliente MQTT (pode ser qualquer string única). Use algum UUID ou dê um nome para o dispositivo para evitar conflitos.
 
 TOPIC = b"v1/devices/me/telemetry"  # tópico padrão de telemetria do ThingsBoard
 
