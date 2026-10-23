@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "author": "Disciplina Internet das Coisas e suas Aplicações",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 10.73, "left": 14.32, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -98.77, "left": -117.26, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "potVib", "top": -110, "left": 60, "attrs": {} },
+    { "type": "wokwi-potentiometer", "id": "potCorr", "top": -110, "left": 160, "attrs": {} },
+    { "type": "wokwi-led", "id": "ledAlerta", "top": 20, "left": 220, "attrs": { "color": "yellow" } },
+    { "type": "wokwi-led", "id": "ledParada", "top": 20, "left": 270, "attrs": { "color": "red" } },
+    { "type": "wokwi-resistor", "id": "r1", "top": 110, "left": 200, "rotate": 90, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r2", "top": 110, "left": 250, "rotate": 90, "attrs": { "value": "220" } },
+    { "type": "wokwi-pushbutton", "id": "btnRearme", "top": 200, "left": 220, "attrs": { "color": "green" } }
+  ],
+  "connections": [
+    ["esp:TX0", "$serialMonitor:RX", "", []],
+    ["esp:RX0", "$serialMonitor:TX", "", []],
+    ["dht1:GND", "esp:GND.2", "black", ["v0"]],
+    ["dht1:VCC", "esp:3V3", "red", ["v0"]],
+    ["dht1:SDA", "esp:D14", "green", ["v0"]],
+    ["potVib:GND", "esp:GND.1", "black", ["v0"]],
+    ["potVib:VCC", "esp:3V3", "red", ["v0"]],
+    ["potVib:SIG", "esp:D34", "orange", ["v0"]],
+    ["potCorr:GND", "esp:GND.1", "black", ["v0"]],
+    ["potCorr:VCC", "esp:3V3", "red", ["v0"]],
+    ["potCorr:SIG", "esp:D35", "blue", ["v0"]],
+    ["esp:D2", "r1:1", "yellow", ["v0"]],
+    ["r1:2", "ledAlerta:A", "yellow", ["v0"]],
+    ["ledAlerta:C", "esp:GND.1", "black", ["v0"]],
+    ["esp:D15", "r2:1", "red", ["v0"]],
+    ["r2:2", "ledParada:A", "red", ["v0"]],
+    ["ledParada:C", "esp:GND.1", "black", ["v0"]],
+    ["btnRearme:1.l", "esp:D4", "green", ["v0"]],
+    ["btnRearme:2.l", "esp:GND.1", "black", ["v0"]]
+  ],
+  "dependencies": {}
+}
