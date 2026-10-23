@@ -18,6 +18,16 @@ as mesmas grandezas da planilha `turbomotors_telemetria.xlsx`.
 A regra de parada (vibração acima de 7,1 mm/s) roda **no próprio ESP32**: o LED
 vermelho acende mesmo sem internet. O alarme no ThingsBoard é a regra **na nuvem**.
 
+# Montagem rápida no ThingsBoard
+
+**Alarme pronto:** no menu lateral, abra **IoT Hub > Alarm Rules**, procure **Motor Vibration Alarm**
+e clique em **Install**, escolhendo o seu dispositivo (ou o perfil dele). O alarme lê a chave `vibration`,
+que este projeto já envia. Padrões: alerta acima de 2,8 mm/s por alguns minutos e crítico acima de 7,1 mm/s
+(exige ThingsBoard 4.3 ou superior).
+
+**Dashboard rápido:** no dispositivo, abra **Latest telemetry**, marque `temperatura_c` e `vibracao_mm_s`,
+clique em **Show on widget**, escolha um gráfico de série temporal e use **Add to dashboard > Create new dashboard**.
+
 # Comandos úteis
 
 ## Atualizar e Executar.

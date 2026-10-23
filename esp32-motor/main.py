@@ -106,6 +106,8 @@ while True:
         payload = ujson.dumps({
             "temperatura_c": temperatura,
             "vibracao_mm_s": 0.1 if parado else vibracao,
+            # mesma leitura com o nome que o alarme pronto "Motor Vibration Alarm" (IoT Hub) espera
+            "vibration": 0.1 if parado else vibracao,
             "corrente_a": 0.0 if parado else ler_corrente(),
             "rotacao_rpm": 0 if parado else ROTACAO_NOMINAL,
             "status": status,
