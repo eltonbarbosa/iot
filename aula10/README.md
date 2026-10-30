@@ -2,7 +2,7 @@
 
 [![Abrir no Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/eltonbarbosa/iot/blob/main/aula10/TurboMotors_BigData.ipynb)
 
-Notebook pronto para o Trabalho 03. Os alunos **não programam**: executam as células na ordem e trocam os limites da regra de alerta nos campos ✏️.
+Notebook pronto para o Trabalho 02. Executar as células na ordem e trocam os limites da regra de alerta nos campos ✏️.
 Os resultados são os mesmos da aba **SIMULADOR** da planilha `turbomotors_telemetria.xlsx`.
 
 | Etapa | Conteúdo | V do Big Data |
