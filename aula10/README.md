@@ -16,7 +16,7 @@ Os resultados são os mesmos da aba **SIMULADOR** da planilha `turbomotors_telem
 
 ## Dados
 
-- `dados/turbomotors_leituras.csv`: telemetria horária de 30 motores por 60 dias (exportada da plataforma IoT).
-- `dados/turbomotors_manutencoes.csv`: ordens de serviço do ERP (preventivas e corretivas).
+O notebook pede o upload dos dois arquivos ao rodar a primeira célula (eles não ficam neste repositório):
 
-O notebook baixa os arquivos deste repositório automaticamente. Sem internet para o GitHub, ele pede o upload dos dois CSV.
+- `turbomotors_leituras.csv`: telemetria horária de 30 motores por 60 dias (exportada da plataforma IoT).
+- `turbomotors_manutencoes.csv`: ordens de serviço do ERP (preventivas e corretivas).
